@@ -13,6 +13,9 @@ include("include/db.php");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
+    <script src="js/jquery.modal.js"></script>
+    <link rel="stylesheet" href="css/jquery.modal.min.css" />
+
 
     <link rel="stylesheet" href="css/style.css">
     <title>Farmside Media - Book</title>
@@ -36,7 +39,9 @@ include("include/db.php");
     <section id="enquiry-form">
         <div class="container">
             <h2>BOOK A DATE WITH US</h2>
-
+            <div id="book_info" style="display: none">
+                <a href="#close-modal" rel="modal:close" class="close-modal ">Close</a>
+            </div>
                 <div class="row">
                     <div class="col-md-6 right-box">
                     <form action="#" method="POST" class="form pb-2" id="booking_form">
@@ -56,14 +61,14 @@ include("include/db.php");
                                         $category_id = $row_categories['id'];
                                         $category_name = $row_categories['category_name'];
                                     ?>
-                                        <option id="category" value="<?php echo"$category_id" ?>"><?php echo"$category_name" ?></option>
+                                        <option id="category" value="<?php echo"$category_id" ?>" required><?php echo"$category_name" ?></option>
                                     <?php
                                     }
                                     ?>
                                 </select>
                             </div>
                             <div class="ferry">
-                                <input class="date" type="text" name="date" id="datepicker" value="Date" required>
+                                <input class="date" type="text" name="date" id="datepicker" placeholder="Date" autocomplete="off" required>
                             </div>
                             <div class="submit-btn">
                                 <input type="submit" name="submit" value="Submit">
@@ -89,25 +94,3 @@ include("include/db.php");
 </script>
 </body>
 </html>
-<?php
-
-if(isset($_POST['submit'])){
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $event_type = $_POST['event_type'];
-    $date = $_POST['date'];
-
-    $add_to_db = "INSERT INTO bookings (name, email, event_type, event_date) VALUES ('$name', '$email', '$event_type', '$date')";
-
-    $run_add = mysqli_query($con, $add_to_db);
-
-    if($run_add){
-        echo"
-        <script>
-            window.open('book.php', '_self')
-        </script>";
-    } else {
-        echo"<script>alert('Booking unsuccessful')</script>";
-    }
-}
-?>

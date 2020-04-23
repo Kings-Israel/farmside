@@ -38,7 +38,7 @@ $(document).ready(function(){
             $.ajax({
                 method: "POST",
                 url: "submitmessage.php",
-                data: {name: name, email: email, phoneNum: phoneNum, message: message},
+                data: {'name': name, 'email': email, 'phoneNum': phoneNum, 'message': message},
                 cache: false,
                 success: function (response) {
                     $("#info").html("<h3 class='text-align-center pb-2'>Thank you " +name+". Message has been received.\nWe will get back to you soon.</h3>\n<a href='#' rel='modal:close'>Click to close</a>");
@@ -76,7 +76,31 @@ $(document).ready(function(){
         var email = $("#email").val();
         var event = $("#event_type").val();
         var date = $("#datepicker").val();
-    })
+
+        $.ajax({
+            url: "submitBook.php",
+            method: "POST",
+            data: {'name': name, 'email': email, 'event_type': event, 'date': date},
+            cache: false,
+            success: function(response){
+                if(response == 'success'){
+                    $("#book_info").html("<h3 class='text-align-center pb-2'>Thank you " +name+". Event Added.\nWe will get back to you soon.</h3>\n<a href='#' rel='modal:close'>Click to close</a>");
+                    $("#book_info").modal({
+                        fadeDuration: 500,
+                        showClose: false,
+                    }).css("height", "auto");
+                    $("#booking_form")[0].reset();
+                } else {
+                    $("#book_info").html("<h3 class='text-align-center pb-2'>Error.\nPlease Try Again.</h3>\n<a href='#' rel='modal:close'>Click to close</a>");
+                    $("#book_info").modal({
+                        fadeDuration: 500,
+                        showClose: false,
+                    }).css("height", "auto");
+                }
+            }
+        });
+        return false;
+    });
 });
 
 

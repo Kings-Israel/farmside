@@ -1,0 +1,210 @@
+#navbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #34A747;
+    color: #fff;
+}
+
+.nav-link, .navbar-brand{
+    color: #fff;
+}
+
+#homepage-carousel img {
+    width: 100%;
+    height: 728px;
+    object-fit: cover;
+}
+
+
+#about {
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(../images/Artboard\ 1.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    color: #efefef;
+    background-attachment: fixed;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#about img {
+    width: 250px;
+}
+
+.about-text {
+    padding-top: 100px;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    color: #34A747 !important;
+    padding-bottom: 10px; 
+}
+
+#errorInfo h4 {
+    text-align: center;
+}
+
+#portfolio {
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0)), url(../images/portfolio-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #efefef;
+    background-attachment: fixed;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#portfolio h2 {
+    text-align: center;
+}
+
+
+.portfolio-image img {
+    width: 500px;
+    padding-left: 20px;
+}
+
+.portfolio-image h5, h3 {
+    margin: 30px;
+    text-align: center;
+}
+
+.portfolio-image a {
+    text-decoration: none;
+    color: #efefef;
+}
+
+.portfolio-image a:hover {
+    text-decoration: none;
+    color: #34A747;
+}
+
+#contact {
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(../images/Farmside.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    color: #efefef;
+    background-attachment: fixed;
+    padding-top: 150px;
+    padding-bottom: 100px;
+}
+
+
+#contact button {
+    background-color: #34A747;
+    margin-left: 200px;
+}
+
+#contact .fa {
+    margin: 20px;
+    margin-left: 30px;
+    color: #34A747;
+    font-size: xx-large;
+}
+
+#contact a{
+    text-decoration: none;
+    color: #efefef;
+}
+
+#contact a:hover {
+    text-decoration: none;
+    color: #34A747;
+}
+
+#footer {
+    background-color: black;
+    color: #34A747;
+}
+
+#footer p {
+    padding: 10px;
+}
+
+input[type="text"], input[type="email"], input[type="number"], textarea#message {
+    width: 92%;
+    padding: .6em 1em;
+    border: none;
+    font-size: 1.5em;
+    outline: none;
+    color: #fff;
+    background-color:#fff;
+    margin-bottom: 1.2em;
+	background-color: transparent;
+    background-image: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+    transition: .3s ease-in-out;
+    border: 0;
+    border-bottom: 1px solid #ebebeb;
+}
+
+#admin_photo img{
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+
+    .navbar button {
+        background-color: #fff;
+    }
+    #carousel img {
+        width: 1024px;
+        height: 480px;
+        object-fit: contain;
+    }
+
+    #about, #portfolio, #contact {
+        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(../images/Farmside.png);
+        background-size: contain;
+        background-position: center;
+        color: #efefef;
+        background-attachment: fixed;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    
+    .portfolio-image img {
+        width: 300px;
+        height: 150px;
+        object-fit: cover;
+    }
+    
+    #contact button {
+    background-color: #34A747;
+    float:left;
+    }
+
+    #contact .fa {
+        color: #34A747;
+        font-size: xx-large;
+        padding-left: 50px;
+    }
+
+    #contact a {
+        text-decoration: none;
+        float: left;
+    }
+}
+
+@media (max-width: 768px) {
+    #carousel img {
+        width: 480px;
+        height: 250px;
+        object-fit: contain;
+    }
+    .portfolio-image img {
+        width: 350px;
+        height: 150px;
+        object-fit: cover;
+        margin-left: 40px;
+    }
+}

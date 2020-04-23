@@ -1,0 +1,387 @@
+#navbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #34A747;
+    color: #fff;
+}
+
+.nav-link, .navbar-brand{
+    color: #fff;
+}
+
+li a.nav-link:hover{
+    cursor: pointer;
+    color: #000;
+}
+
+#homepage-carousel img {
+    width: 100%;
+    height: 728px;
+    object-fit: cover;
+}
+
+
+#about {
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(../images/Artboard\ 1.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    color: #efefef;
+    background-attachment: fixed;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#about img {
+    width: 250px;
+}
+
+.about-text {
+    padding-top: 100px;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    color: #34A747 !important;
+    padding-bottom: 10px; 
+}
+
+#portfolio {
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0)), url(../images/portfolio-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #efefef;
+    background-attachment: fixed;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#portfolio h2 {
+    text-align: center;
+}
+
+
+.portfolio-image img {
+    width: 500px;
+    padding-left: 20px;
+}
+
+.portfolio-image h5, h3 {
+    margin: 30px;
+    text-align: center;
+}
+
+.portfolio-image a {
+    text-decoration: none;
+    color: #efefef;
+}
+
+.portfolio-image a:hover {
+    text-decoration: none;
+    color: #34A747;
+}
+
+#contact {
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(../images/Farmside.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    color: #efefef;
+    background-attachment: fixed;
+    padding-top: 150px;
+    padding-bottom: 50px;
+}
+
+
+#contact button {
+    background-color: #34A747;
+    margin-left: 200px;
+}
+
+#contact .fa {
+    margin: 20px;
+    margin-left: 30px;
+    color: #34A747;
+    font-size: xx-large;
+}
+
+#contact a{
+    text-decoration: none;
+    color: #efefef;
+}
+
+#contact a:hover {
+    text-decoration: none;
+    color: #34A747;
+}
+
+#footer {
+    background-color: black;
+    color: #34A747;
+}
+
+#footer p {
+    padding: 5px;
+}
+
+#portrait, #studio, #events, #corp-events, #enquiry-form h2 {
+    padding: 20px;
+    text-align: center;
+}
+
+#enquiry-form{
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(../images/66.jpg);
+    background-size: cover;
+    color: #efefef;
+    background-attachment: fixed;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.photography {
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+    background-size: cover;
+    color: #efefef;
+    background-attachment: fixed;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.videography {
+    background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+    background-size: cover;
+    color: #efefef;
+    background-attachment: fixed;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.modal-footer span, i {
+    color: #34A747;
+}
+
+#photography-header, #videography-header {
+    padding-top: 10px;
+}
+
+#photography-header, #videography-header h1 {
+    font-size: 60px;
+}
+
+#portrait img {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+}
+
+
+
+input[type="text"], input[type="email"], select, input[type="number"], select.dropdown, input#datepicker, textarea#message {
+    width: 92%;
+    padding: .6em 1em;
+    border: none;
+    font-size: 1.5em;
+    outline: none;
+    color: #fff;
+    background-color:#fff;
+    margin-bottom: 1.2em;
+	background-color: transparent;
+    background-image: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+    transition: .3s ease-in-out;
+    border: 0;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.ferry {
+    padding: 0px 0px 0px;
+    text-align: left;
+} 
+
+form {
+    padding-left: 20px;
+	margin-top: 10px;
+}
+
+select option {
+background:#000;
+}
+.gallery-link a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.gallery-link a:hover {
+    text-decoration: none;
+    color: #34A747;
+}
+
+.left-box {
+    margin-top: 20px;
+    padding: 100px;
+}
+
+.left-box p {
+    text-align: center;
+}
+
+.date {
+    cursor: pointer;
+	padding: 8px 0;
+}
+
+.submit-btn {
+    padding: 0 0 30px;
+    text-align: left;
+}
+
+.submit-btn input[type="submit"] {
+    padding: .7em 1em;
+    width: 90%;
+    font-size: 1em;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: #34A747;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.submit-btn input[type="submit"]:hover {
+	background-color:#020202;
+}
+
+.info {
+    color: #34A747;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.single-video {
+    padding-bottom: 20px;
+}
+
+.single-video img {
+    width: 550px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.video-info {
+    padding-top: 30px;
+}
+
+.video-info h3 {
+    text-align: left;
+}
+
+.video-info p {
+    text-align: left;
+    padding-left: 30px;
+}
+
+.tz-gallery {
+    padding: 40px;
+}
+
+.tz-gallery .lightbox img {
+    width: 100%;
+    margin-bottom: 30px;
+    transition: 0.2s ease-in-out;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+}
+
+
+.tz-gallery .lightbox img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(85, 62, 62, 0.3);
+}
+
+.tz-gallery img {
+    border-radius: 4px;
+}
+
+.baguetteBox-button {
+    background-color: transparent !important;
+}
+
+
+@media (min-width: 768px) {
+
+    /* show 4 items */
+    .carousel-inner .active,
+    .carousel-inner .active + .carousel-item,
+    .carousel-inner .active + .carousel-item + .carousel-item,
+    .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item {
+        display: block;
+    }
+    
+
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item,
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item {
+        transition: none;
+        margin-right: initial;
+    }
+    
+
+    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item-prev {
+      position: relative;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: absolute;
+        top: 0;
+        right: -25%;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+/*
+    .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+    .carousel-item-next.carousel-item-left + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+    .carousel-inner .carousel-item-prev.carousel-item-right {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+
+    .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+    .carousel-item-prev.carousel-item-right + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+        display: block;
+        visibility: visible;
+    }
+
+    .carousel-control-prev {
+        padding-top: 350px;
+    }
+
+    .carousel-control-next {
+        padding-top: 350px;
+    } */
+
+}
+

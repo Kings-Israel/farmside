@@ -1,4 +1,64 @@
 $(document).ready(function(){
+    $("#mailForm").validate({
+        errorElement: "div",
+        errorLabelContainer: "#info_area",
+        rules: {
+            mail_id: "required",
+            mail_address: {
+                required: true,
+                email: true,
+            },
+            mail_subject: "required",
+            mail_message: "required",
+        },
+        messages: {
+            mail_id: {
+                required: "Mail ID is missing",
+            },
+            mail_address: {
+                required: "Please Enter an Email Address",
+                email: "Enter a valid Email Address",
+            },
+            mail_subject: {
+                required: "Enter a mail Subject",
+            },
+            mail_message: {
+                required: "Please Enter mail message",
+            },
+        },
+        submitHandler: function(form){
+            $("#mailForm").ajaxSubmit({
+                uploadProgress: function(event, position, total, percentComplete){
+                    $("#send_mail").val("Sending Mail. Please Wait...");
+                    $("#send_mail").attr("disabled", true);
+                    $("#cancel_btn").attr("disabled", true);
+                },
+                success: function(response){
+                    if(response == "success"){
+                        $("#mail_info").html("<h3 class='text-align-center pb-2'>Mail Sent.</h3>\n<a href='#' class='modal_close' rel='modal:close'>Click to close</a>");
+                        $("#mail_info").modal({
+                            fadeDuration: 500,
+                            escapeClose: false,
+                            clickClose: false,
+                            showClose: false,
+                        }).css("height", "auto");
+                        $(".modal_close").on("click", function(){
+                            window.open("index.php", "_self");
+                        });
+                    } else {
+                        $("#mail_info").html("<h3 class='text-align-center pb-2'>Mail Not Sent.\nPlease Try Again</h3>\n<a href='#' rel='modal:close'>Click to close</a>");
+                        $("#mail_info").modal({
+                            fadeDuration: 500,
+                            showClose: false,
+                        }).css("height", "auto");
+                        $("#send_mail").val("Send")
+                        $("#send_mail").attr("disabled", false)
+                        $("#cancel_btn").attr("disabled", false);
+                    }
+                }
+            });
+        }
+    });
     //Delete one photo from gallery
     $('.delete_photo').click(function(){
         var el = this;
@@ -13,7 +73,7 @@ $(document).ready(function(){
             data:{id:$delete_id},
             success:function(response){
                 if(response == 1){
-                    $(el).closest('tr').fadeOut(800, function(){
+                    $(el).closest('tr').fadeOut(500, function(){
                         $(this).remove();
                     });
                 } else {
@@ -195,6 +255,58 @@ $(document).ready(function(){
                 }
             }
         });
+    });
+
+    $.validator.addMethod("phoneRegex", function(value, element){
+        return this.optional(element) || /^\s*(?:\+?((254|0)?))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/.test(value);
+    }, "Please Enter A valid phone Number");
+
+    $("#admin_details").validate({
+        errorElement: "div",
+        errorLabelContainer: "#info_area",
+        rules: {
+            admin_name: {
+                required: true,
+            },
+            admin_email: {
+                required: true,
+            },
+            admin_phone_number: {
+                required: true,
+                phoneRegex: true,
+            },
+            admin_description: {
+                required: true,
+            },
+        },
+        messages: {
+            admin_name: {
+                required: 'Please Enter Your Name',
+            },
+            admin_email: {
+                required: 'Please Enter Your Email',
+            },
+            admin_phone_number: {
+                required: 'Please Enter your phone Number',
+            },
+            admin_description: {
+                required: "Enter Your Bio please",
+            },
+        },
+
+        submitHandler: function(form){
+            $("#admin_details").ajaxSubmit({
+                success: function(response){
+                    if(response == 'success'){
+                        window.open('logout.php', '_self');
+                        alert("Please login");
+                    } else {
+                        alert("Error")
+                    }
+                }
+            });
+            return false;
+        }
     });
 
     $(".change_carousel_photo").click(function(){

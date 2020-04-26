@@ -33,7 +33,7 @@ $admin_name = $row_admin_name['admin_name'];
             <?php echo"$admin_name"; ?>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="edit_profile.php" id="edit_profile">Edit Profile</a>
+            <a class="dropdown-item" href="index.php?profile" id="edit_profile">Edit Profile</a>
             <a class="dropdown-item" href="logout.php">Logout</a>
           </div>
         </li>

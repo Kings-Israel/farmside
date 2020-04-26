@@ -28,7 +28,7 @@ if(isset($_GET['video_id'])){
         $delete_video = mysqli_query($con, $delete_video_query);
 
         if($delete_video){
-            echo"<script>window.open('video.php','_self')</script>";
+            echo"<script>window.open('index.php?videos','_self')</script>";
         } else {
             echo "<script>alert('Error deleting video')</script>";
         }

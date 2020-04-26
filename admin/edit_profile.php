@@ -57,7 +57,7 @@ while($row_details = mysqli_fetch_assoc($run_admin_id)){
                                     <textarea name="admin_description" class="form-control" id="admin_description" rows="6"></textarea>
                                     <div class="row">
                                         <div class="col-md-4">
-                                                <input type="submit" id="update_profile" name="update_profile" value="Submit" class="btn btn-md btn-outline-primary mt-3">
+                                            <input type="submit" id="update_profile" name="update_profile" value="Submit" class="btn btn-md btn-outline-primary mt-3">
                                         </div>
                                         <div class="col-md-8">
                                             <div id="error_message" class="text-danger mt-3"></div>
@@ -138,7 +138,7 @@ while($row_details = mysqli_fetch_assoc($run_admin_id)){
             },
             admin_description: {
                 required: "Enter Your Bio please",
-            }
+            },
         },
 
         submitHandler: function(form){

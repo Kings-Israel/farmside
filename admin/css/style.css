@@ -1,4 +1,15 @@
-
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
 
 #sidebar-wrapper {
     position: sticky;
@@ -98,6 +109,23 @@
     color: #fff;
 }
 
+#progress-div {
+    border: 1px solid #05F;
+    border-radius: 5px;
+    height: 36px;
+  }
+
+#progress-bar {
+    background-color: #34A747;
+    color: #fff;
+    border-radius: 4px;
+    height: 34px;
+    width: 0%;
+    -webkit-transition: width .3s;
+    -moz-transition: width .3s;
+    transition: width .3s;
+}
+
 .modal-body label {
     margin-top: 5px;
 }
@@ -169,7 +197,16 @@
     height: 20px;
 }
 
-#error_message {
+#info_area {
     text-transform: uppercase;
     font-size: 20px;
+}
+
+.modal_close:hover {
+    text-decoration: none;
+    color: darkred;
+}
+
+.bookings span {
+    color: #34A747;
 }

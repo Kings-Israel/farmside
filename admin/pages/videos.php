@@ -1,96 +1,35 @@
 <?php
-session_start();
-if(!isset($_SESSION['email'])){
-    echo"<script>window.open('admin_login.php', '_self')</script>";
-    echo"<script>alert('Please Login')</script>";
-} else {
-include("../include/db.php");
-$records_per_page = 8;
-$page = '';
+function getVideos(){
+    if(isset($_GET['videos'])){
+        global $con;
+        $records_per_page = 8;
+        $page = '';
 
-if(isset($_GET["page"])){
-    $page = $_GET["page"];
-} else {
-    $page = 1;
-}
+        if(isset($_GET["page"])){
+            $page = $_GET["page"];
+        } else {
+            $page = 1;
+        }
 
-$start_from = ($page - 1)*$records_per_page;
+        $start_from = ($page - 1)*$records_per_page;
 
-$get_videos = "SELECT * FROM videos LIMIT $start_from,$records_per_page";
+        $get_videos = "SELECT * FROM videos LIMIT $start_from,$records_per_page";
 
-$run_videos = mysqli_query($con, $get_videos);
-?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Farmside Media - Admin</title>
-
-    <link rel="stylesheet" href="../css/bootstrap.4.1.1.min.css">
-    <link rel="stylesheet" href="../css/font-awesome.4.7.0.min.css">
-
-    <script src="../js/jquery-3.4.1.min.js"></script>
-    <script src="js/ajax.3.0.0.jquery.min.js"></script>
-    <script src="js/jquery.4.2.2.form.js"></script>
-    <script src="../js/popper.min.js"></script>
-    <script src="../js/bootstrap-4.1.1.min.js"></script>
-
-  <!-- Custom styles for this template -->
-  <link rel="stylesheet" href="css/style.css">
-
-  <style>
-  #progress-div {
-    border: 1px solid #05F;
-    border-radius: 5px;
-    height: 36px;
-  }
-
-  #progress-bar {
-      background-color: #34A747;
-      color: #fff;
-      border-radius: 5px;
-      height: 34px;
-      width: 0%;
-      -webkit-transition: width .3s;
-      -moz-transition: width .3s;
-      transition: width .3s;
-  }
-  </style>
-
-</head>
-
-<body>
-<div class="d-flex" id="wrapper">
-
-<!-- Sidebar -->
-<?php include("sidebar.php") ?>
-<!-- /#sidebar-wrapper -->
-
-<!-- Page Content -->
-<div id="page-content-wrapper">
-
-<?php include("navbar.php") ?>
-
-    <div class="container-fluid">
+        $run_videos = mysqli_query($con, $get_videos);
+        ?>
         <div class="row">
             <div class="col-md-6">
-                <div class="row">
+                <div class="row animated slideInDown">
                     <div class="col-sm-3">
                         <h1 class="mt-2">Media</h1>
                     </div>
                     <div class="col-sm-9">
-                        <h3 class="mr-5 pt-3">Videos</h3>
+                        <h3 class="mr-5 pt-3 animated slideInDown delay-4s">Videos</h3>
                     </div>
                 </div>
             </div>
             <div class="col-md-6" id="add_media_btn">
-                <button type="button" class="btn btn-sm btn-primary p-2 mt-2 mr-2" data-toggle="modal" data-target="#addMediaModal">Add Video</button>
+                <button type="button" class="btn btn-sm btn-primary p-2 mt-2 mr-2 animated slideInDown delay-3s" data-toggle="modal" data-target="#addMediaModal">Add Video</button>
             </div>
         </div>
         <div class="modal fade" id="addMediaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -142,7 +81,8 @@ $run_videos = mysqli_query($con, $get_videos);
             </div>
         </div>
         <section id="videos">
-            <table class="table table-striped table-dark">
+        <div id="page-container">
+            <table class="table table-striped table-dark animated slideInLeft">
                 <thead>
                     <tr>
                     <th scope="col">Video Title</th>
@@ -200,8 +140,9 @@ $run_videos = mysqli_query($con, $get_videos);
                 }
                 ?>
             </table>
+        </div>
             <div class="navigation">
-                    <ul class="pagination">
+                    <ul class="pagination animated slideInUp delay-3s">
                     <?php
                     $get_all_records = "SELECT * FROM videos";
                     $result = mysqli_query($con, $get_all_records);
@@ -216,14 +157,8 @@ $run_videos = mysqli_query($con, $get_videos);
                     ?>
                     </ul>
                 </div>
-            
         </section>
-    </div>
-</div>
-</div>
-<?php include ("footer.php") ?>
-</body>
-</html>
-<?php
+        <?php
+    }
 }
 ?>

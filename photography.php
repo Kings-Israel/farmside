@@ -1,5 +1,4 @@
 <?php
-
 include ("include/db.php");
 
 ?>
@@ -9,14 +8,18 @@ include ("include/db.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all">
-    <link rel="stylesheet" href="css/bootstrap.4.1.1.min.css">
-    <link rel="stylesheet" href="css/font-awesome.4.7.0.min.css">
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap-4.1.1.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="css/baguetteBox.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="include/dist/css/lightbox.min.css">
+    <script src="include/dist/js/lightbox.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 
     <title>Farmside Media - Photography</title>
 </head>
@@ -46,7 +49,7 @@ include ("include/db.php");
 </div>
 <div class="photography">
     <div class="container">
-        <?php
+    <?php
         $get_categories_query = "SELECT * FROM categories";
         $get_categories = mysqli_query($con, $get_categories_query);
         while($row_categories = mysqli_fetch_assoc($get_categories)){
@@ -55,15 +58,16 @@ include ("include/db.php");
         ?>
         <section id="portrait">
             <h2><?php echo $category_name ?></h2>
-            <div class="container-fluid tz-gallery">
-                <div class="row">
-                    <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="1000">
-                        <div class="carousel-inner row w-100 mx-auto" role="listbox">
+            <div class="container-fluid">
+                <div class="row mx-auto my-auto">
+                    <div id="myCarousel" class="carousel slide w-100" data-ride="carousel">
+                        <div class="carousel-inner w-100" role="listbox">
                             <?php
-                            $get_portrait_photos = "SELECT * FROM photos WHERE category_id = '$category_id' ORDER BY RAND()";
+                            $get_portrait_photos = "SELECT * FROM photos WHERE category_id = '$category_id' ORDER BY RAND() LIMIT 0,5";
 
                             $run_portrait_photos = mysqli_query($con, $get_portrait_photos);
 
+                            $i=0;
                             if(mysqli_num_rows($run_portrait_photos) <= 0) {
                                 ?>
                                 <div class="info">
@@ -77,13 +81,29 @@ include ("include/db.php");
                                 $photo_category_id = $row_portrait_photos['category_id'];
                                 $photo_name = $row_portrait_photos['image_name'];
 
-                            ?>
-                            <div class="carousel-item col-md-3 active">
-                                <a class="lightbox" href="images/<?php echo "$photo_name" ?> ">
-                                    <img class="img-fluid mx-auto d-bloc" src="images/<?php echo "$photo_name" ?>" alt='<?php $photo_category ?>'>
-                                </a>
-                            </div>
-                            <?php
+                                if($i==0){
+                                    ?>
+                                    <div class="carousel-item active">
+                                        <div class="col-lg-4 col-md-6">
+                                            <a class="demo" href="images/<?php echo "$photo_name" ?>" data-lightbox="example-set">
+                                                <img class="img-fluid" src="images/<?php echo "$photo_name" ?>" alt='<?php $photo_category ?>'>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <?php
+                                    $i++;
+                                } else {
+                                    ?>
+                                    <div class="carousel-item">
+                                        <div class="col-lg-4 col-md-6">
+                                            <a class="demo" href="images/<?php echo "$photo_name" ?>" data-lightbox="example-set">
+                                                <img class="img-fluid" src="images/<?php echo "$photo_name" ?>" alt='<?php $photo_category ?>'>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <?php
+                                    $i++;
+                                }
                             }
                         }
                         ?>
@@ -102,32 +122,34 @@ include ("include/db.php");
 include("footer.php")
 ?>
 
+<!--scripts loaded here-->
+
 <script src="js/script.js"></script>
-<script src="js/jquery-ui.js"></script>
 <script src="js/smooth-scroll.js"></script>
-<script src="js/baguetteBox.min.js"></script>
 <script>
-    var scroll = new SmoothScroll('a[href*="#"]');
-    baguetteBox.run('.tz-gallery');
-    $(function() {
-        $( "#datepicker").datepicker();
+    $(document).ready(function(){
+        $("#myCarousel").carousel({
+        interval: 5000
+        });
+
+        $(".carousel .carousel-item").each(function() {
+            var minPerSlide = 4;
+            var next = $(this).next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+            next.children(':first-child').clone().appendTo($(this));
+
+            for (var i = 0; i < minPerSlide; i++) {
+                next = next.next();
+                if (!next.length) {
+                    next = $(this).siblings(':first');
+                }
+
+                next.children(':first-child').clone().appendTo($(this));
+            }
+        });
     });
 </script>
 </body>
 </html>
-<?php
-if(isset($_POST['submit'])){
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $event_type = $_POST['event_type'];
-    $date = $_POST['date'];
-
-    $add_to_db = "INSERT INTO bookings (name, email, event_type, event_date) VALUES ('$name', '$email', '$event_type', '$date')";
-
-    $run_add = mysqli_query($con, $add_to_db);
-
-    if($run_add){
-        echo"<script>window.open('photography.php', '_self')</script>";
-    }
-}
-?>

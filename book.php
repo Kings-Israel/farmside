@@ -8,15 +8,15 @@ include("include/db.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+    
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.js"></script>
 
-    <script src="js/jquery.modal.js"></script>
-    <link rel="stylesheet" href="css/jquery.modal.min.css" />
-
-
+    <link rel="stylesheet" href="css/jquery-ui.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Farmside Media - Book</title>
 </head>
@@ -44,7 +44,7 @@ include("include/db.php");
             </div>
                 <div class="row">
                     <div class="col-md-6 right-box">
-                    <form action="#" method="POST" class="form pb-2" id="booking_form">
+                    <form action="submitBook.php" method="POST" id="booking_form">
                             <div class="ferry">
                                 <input type="text" name="name" id="name" placeholder="Name" required>
                             </div>
@@ -68,16 +68,17 @@ include("include/db.php");
                                 </select>
                             </div>
                             <div class="ferry">
-                                <input class="date" type="text" name="date" id="datepicker" placeholder="Date" autocomplete="off" required>
+                                <input class="date" type="text" name="datepicker" id="datepicker" placeholder="Date" autocomplete="off" required>
                             </div>
                             <div class="submit-btn">
-                                <input type="submit" name="submit" value="Submit">
+                                <input type="submit" name="book_event" id="book_event" value="Submit">
                             </div>
                     </form>
                 </div>
                 <div class="col-md-6 left-box">
                     <h3 id="category-header">Book Your Photoshoot</h3>
                     <p id="category-details">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, nunc eget malesuada vehicula, odio ex tempor risus</p>
+                    <div class="text-danger" id="info_area"></div>
                 </div>
             </div>
         </div>
@@ -85,12 +86,12 @@ include("include/db.php");
     <?php
         include("footer.php")
     ?>
-<script src="js/jquery-ui.js"></script>
-<script src="js/script.js"></script>
-<script>
-    $(function() {
-        $( "#datepicker").datepicker();
-    });
-</script>
+    <script src="js/script.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $( "#datepicker").datepicker();
+        });
+    </script>
 </body>
 </html>

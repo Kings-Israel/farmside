@@ -11,9 +11,9 @@ function get_category($id){
 }
 //Bookings page
 function getBookings(){
-    if(!isset($_GET['messages']) && !isset($_GET['send_mail']) && !isset($_GET['photos']) && !isset($_GET['videos']) && !isset($_GET['more_actions']) && !isset($_GET['profile'])){
+    if(!isset($_GET['messages']) && !isset($_GET['send_mail']) && !isset($_GET['reply_message']) && !isset($_GET['photos']) && !isset($_GET['videos']) && !isset($_GET['more_actions']) && !isset($_GET['profile'])){
         global $con;
-        $records_per_page = 10;
+        $records_per_page = 9;
         $page = '';
 
         if(isset($_GET["page"])){
@@ -29,8 +29,8 @@ function getBookings(){
         $run_get_events = mysqli_query($con, $get_events);
         ?>
         <h1 class="animated slideInDown delay-2s">Bookings</h1>
-        <div id="page-container" class="animated slideInRight">
-            <table class="table table-striped table-dark">
+        <div id="page-container">
+            <table class="table table-striped table-dark animated slideInRight">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -75,14 +75,14 @@ function getBookings(){
                 ?>
             </table>
         </div>
-            <nav aria-label="Page Navigation example">
+            <nav aria-label="Page">
                 <ul class="pagination animated slideInUp delay-3s">
                 <?php
                 $get_all_records = "SELECT * FROM bookings";
                 $result = mysqli_query($con, $get_all_records);
                 $total_records = mysqli_num_rows($result);
                 $total_pages = ceil($total_records/$records_per_page);
-    
+
                 for ($i=1; $i<=$total_pages; $i++){
                 ?>
                     <li class="page-item"><a class="page-link" href="index.php?page=<?php echo "$i" ?>"><?php echo"$i" ?></a></li>

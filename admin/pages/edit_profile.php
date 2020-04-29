@@ -7,14 +7,23 @@ function editProfile(){
         $run_admin_id = mysqli_query($con, $get_admin_id);
         while($row_details = mysqli_fetch_assoc($run_admin_id)){
             $admin_id = $row_details['id'];
+            $admin_name = $row_details['admin_name'];
+            $admin_email = $row_details['admin_email'];
+            $phone_number = $row_details['phone_number'];
+            $admin_bio = $row_details['description'];
             $admin_photo = $row_details['admin_photo'];
         }
         ?>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
         <div id="page-container">
             <h1 class="mt-2 animated slideInDown">Edit Profile</h1>
             <div class="card">
                 <div class="card-header">
                     <h3>Edit Details</h3>
+                    <div id="mail_info" style="display: none">
+                        <a href="#close-modal" rel="modal:close" class="close-modal ">Close</a>
+                    </div>
                 </div>
                 <div class="card-body" id="admin_form_card">
                     <div class="row">
@@ -56,22 +65,7 @@ function editProfile(){
             </div>
         </div>
         <script>
-        $("#admin_form_card").ready(function(){
-            var id = $("#admin_id").val();
 
-            $.ajax({
-                url: 'profile_update.php',
-                method: 'GET',
-                data: {'admin_id': id},
-                success: function(response){
-                    response1 = JSON.parse(response);
-                    $("#admin_name").val(response1['admin_name']);
-                    $("#admin_email").val(response1['admin_email']);
-                    $("#admin_phone_number").val(response1['phone_number']);
-                    $("#admin_description").val(response1['admin_description']);
-                }
-            });
-        });
         </script>
         <?php
     }

@@ -6,7 +6,7 @@ function getMessages(){
 
         $page = '';
 
-        $records_per_page = 8;
+        $records_per_page = 9;
 
         if(isset($_GET["messages"])){
             $page = $_GET["messages"];
@@ -21,8 +21,8 @@ function getMessages(){
         $run_get_messages = mysqli_query($con, $get_messages);
         ?>
         <h1 class="animated slideInDown delay-2s">Messages</h1>
-        <div id="page-container" class="animated slideInRight">
-            <table class="table table-striped table-dark">
+        <div id="page-container">
+            <table class="table table-striped table-dark animated slideInRight">
                 <thead>
                     <tr>
                     <th scope="col">Name</th>
@@ -38,6 +38,7 @@ function getMessages(){
                     $user_email = $row_messages['email'];
                     $user_phone_number = $row_messages['phone_number'];
                     $message = $row_messages['message'];
+                    $is_reviewed = $row_messages['is_reviewed'];
                 ?>
                 <tbody>
                     <tr>
@@ -45,28 +46,44 @@ function getMessages(){
                         <td><?php echo "$user_email" ?></td>
                         <td>#<?php echo "$user_phone_number" ?></td>
                         <td>
-                            <div class="dropdown">
-                                <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Dropdown button
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#<?php echo "$message_id" ?>">View Message</a>
-                                    <a class="dropdown-item" href="#">Mark As Read</a>
+                            <?php
+                            if($is_reviewed == true){
+                                ?>
+                                <span>Reviewed</span>
+                                <?php
+                            } else {
+                                ?>
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Actions
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item">
+                                            <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#<?php echo "$message_id" ?>" aria-haspopup="true" aria-expanded="false">
+                                                View Message
+                                            </button>
+                                        </a>
+                                        <a class="dropdown-item" href="mailHandler.php?mark_read=<?php echo $message_id ?>"><span>Mark As Read</span></a>
+                                    </div>
                                 </div>
-                            </div>
+                                <?php
+                            }
+                            ?>
                         </td>
                     </tr>
                     <tr>
                 </tbody>
+                
                 <div class="modal fade" id="<?php echo "$message_id" ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
 
                         <!--Content-->
                         <div class="modal-content">
 
                             <!--Header-->
-                            <div class="modal-header justify-content-center">
-                                <h2><?php echo "$user_name" ?></h2>
+                            <div class="modal-header">
+                                <h3><?php echo "$user_name" ?></h3>
+                                <h5><?php echo $user_phone_number ?></h5>
                             </div>
 
                             <!--Body-->
@@ -76,7 +93,8 @@ function getMessages(){
 
                             <!--Footer-->
                             <div class="modal-footer justify-content-center">
-                                <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
+                                <a href="index.php?reply_message=<?php echo $message_id ?>"><button type="button" class="btn btn-md btn-outline-primary">Reply</button></a>
+                                <button type="button" class="btn btn-outline-secondary btn-rounded btn-md" data-dismiss="modal">Close</button>
                             </div>
 
                         </div>
@@ -87,7 +105,7 @@ function getMessages(){
                 <?php } ?>
             </table>
         </div>
-        <div class="navigation">
+        <nav aria-label="Page">
             <ul class="pagination animated slideInUp delay-3s">
             <?php
             $get_all_records = "SELECT * FROM messages";
@@ -102,7 +120,7 @@ function getMessages(){
             }
             ?>
             </ul>
-        </div>
+        </nav>
 
     <?php
     }

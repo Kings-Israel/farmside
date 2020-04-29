@@ -43,7 +43,7 @@ $(document).ready(function(){
                             showClose: false,
                         }).css("height", "auto");
                         $(".modal_close").on("click", function(){
-                            window.open("index.php", "_self");
+                            window.open(window.history.back(), "_self");
                         });
                     } else {
                         $("#mail_info").html("<h3 class='text-align-center pb-2'>Mail Not Sent.\nPlease Try Again</h3>\n<a href='#' rel='modal:close'>Click to close</a>");
@@ -257,6 +257,23 @@ $(document).ready(function(){
         });
     });
 
+    $("#admin_form_card").ready(function(){
+        var id = $("#admin_id").val();
+
+        $.ajax({
+            url: 'profile_update.php',
+            method: 'GET',
+            data: {'admin_id': id},
+            success: function(response){
+                response1 = JSON.parse(response);
+                $("#admin_name").val(response1['admin_name']);
+                $("#admin_email").val(response1['admin_email']);
+                $("#admin_phone_number").val(response1['phone_number']);
+                $("#admin_description").val(response1['admin_description']);
+            }
+        });
+    });
+
     $.validator.addMethod("phoneRegex", function(value, element){
         return this.optional(element) || /^\s*(?:\+?((254|0)?))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/.test(value);
     }, "Please Enter A valid phone Number");
@@ -298,10 +315,22 @@ $(document).ready(function(){
             $("#admin_details").ajaxSubmit({
                 success: function(response){
                     if(response == 'success'){
-                        window.open('logout.php', '_self');
-                        alert("Please login");
+                        $("#mail_info").html("<h3 class='pb-2'>Details Updated.\nPlease Login.</h3>\n<a href='#' class='modal_close' rel='modal:close'>Click to close</a>");
+                        $("#mail_info").modal({
+                            fadeDuration: 500,
+                            escapeClose: false,
+                            clickClose: false,
+                            showClose: false,
+                        }).css("height", "auto");
+                        $(".modal_close").on("click", function(){
+                            window.open('logout.php', '_self');
+                        });
                     } else {
-                        alert("Error")
+                        $("#mail_info").html("<h3 class='pb-2'>Error Updating Details.\nPlease Try Again</h3>\n<a href='#' rel='modal:close'>Click to close</a>");
+                        $("#mail_info").modal({
+                            fadeDuration: 500,
+                            showClose: false,
+                        }).css("height", "auto");
                     }
                 }
             });
@@ -335,21 +364,6 @@ $(document).ready(function(){
     //             resetForm: true
     //         });
     //         return false;
-    //     }
-    // });
-
-    // $("#admin_details").submit(function(e){
-    //     e.preventDefault();
-    //     var admin_id = $("#admin_id").val();
-    //     var admin_name = $("#admin_name").val();
-    //     var admin_email = $("#admin_email").val();
-    //     var admin_phone_number = $("#admin_phone_number").val();
-    //     var admin_description = $("#admin_description").val();
-    //     var phone_pattern = new RegExp("^\\s*(?:\\+?((254|0)?))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$");
-    //     if($("#admin_details").validate() && !phone_pattern.test(admin_phone_number)){
-    //         $("#error_message").html("<h5 style='color: red'>Check phone number</h5>")
-    //         $("#error_message").delay(3000).fadeOut("slow");
-    //     } else {
     //     }
     // });
 });

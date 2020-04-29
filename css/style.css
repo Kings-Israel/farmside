@@ -178,30 +178,16 @@ h1 {
 }
 
 
-
-input[type="text"], input[type="email"], select, input[type="number"], select.dropdown, input#datepicker, textarea#message {
-    width: 92%;
-    padding: .6em 1em;
-    border: none;
-    font-size: 1.5em;
-    outline: none;
-    color: #fff;
-    background-color:#fff;
-    margin-bottom: 1.2em;
-	background-color: transparent;
-    background-image: none;
-    border-radius: 0;
-    -webkit-appearance: none;
-    transition: .3s ease-in-out;
-    border: 0;
-    border-bottom: 1px solid #ebebeb;
-}
-
 .ferry {
     padding: 0px 0px 0px;
     text-align: left;
 } 
-
+#info_area {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    color: red;
+}
 form {
     padding-left: 20px;
 	margin-top: 10px;
@@ -210,6 +196,7 @@ form {
 select option {
 background:#000;
 }
+
 .gallery-link a{
     text-decoration: none;
     color: #fff;
@@ -284,11 +271,11 @@ background:#000;
     padding-left: 30px;
 }
 
-.tz-gallery {
+.demo {
     padding: 40px;
 }
 
-.tz-gallery .lightbox img {
+.demo img {
     width: 100%;
     margin-bottom: 30px;
     transition: 0.2s ease-in-out;
@@ -296,12 +283,12 @@ background:#000;
 }
 
 
-.tz-gallery .lightbox img:hover {
+.demo img:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 15px rgba(85, 62, 62, 0.3);
 }
 
-.tz-gallery img {
+.demo img {
     border-radius: 4px;
 }
 
@@ -309,79 +296,72 @@ background:#000;
     background-color: transparent !important;
 }
 
-
-@media (min-width: 768px) {
-
-    /* show 4 items */
-    .carousel-inner .active,
-    .carousel-inner .active + .carousel-item,
-    .carousel-inner .active + .carousel-item + .carousel-item,
-    .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item {
-        display: block;
-    }
-    
-
-    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
-    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
-    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item,
-    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item {
-        transition: none;
-        margin-right: initial;
-    }
-    
-
-    .carousel-inner .carousel-item-next,
-    .carousel-inner .carousel-item-prev {
-      position: relative;
-      transform: translate3d(0, 0, 0);
-    }
-
-    .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
-        position: absolute;
-        top: 0;
-        right: -25%;
-        z-index: -1;
-        display: block;
-        visibility: visible;
-    }
-/*
-    .active.carousel-item-left + .carousel-item-next.carousel-item-left,
-    .carousel-item-next.carousel-item-left + .carousel-item,
-    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
-    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item,
-    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
-        position: relative;
-        transform: translate3d(-100%, 0, 0);
-        visibility: visible;
-    }
-    .carousel-inner .carousel-item-prev.carousel-item-right {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        display: block;
-        visibility: visible;
-    }
-
-    .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
-    .carousel-item-prev.carousel-item-right + .carousel-item,
-    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
-    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item,
-    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
-        position: relative;
-        transform: translate3d(100%, 0, 0);
-        visibility: visible;
-        display: block;
-        visibility: visible;
-    }
-
-    .carousel-control-prev {
-        padding-top: 350px;
-    }
-
-    .carousel-control-next {
-        padding-top: 350px;
-    } */
-
+input[type="text"], input[type="email"], select, input[type="number"], select.dropdown, input#datepicker, textarea#message {
+    width: 92%;
+    padding: .6em 1em;
+    border: none;
+    font-size: 1.5em;
+    outline: none;
+    color: #fff;
+    background-color:#fff;
+    margin-bottom: 1.2em;
+	background-color: transparent;
+    background-image: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+    transition: .3s ease-in-out;
+    border: 0;
+    border-bottom: 1px solid #ebebeb;
 }
 
+/*********************************************************************/
+/* Bootstrap 4 Multiple Item Carousel */
+/*********************************************************************/
+/* medium - display 2  */
+@media (min-width: 768px) {
+
+    .carousel-inner .carousel-item-right.active,
+    .carousel-inner .carousel-item-next {
+        transform: translateX(50%);
+    }
+
+    .carousel-inner .carousel-item-left.active,
+    .carousel-inner .carousel-item-prev {
+        transform: translateX(-50%);
+    }
+}
+
+/* large - display 3 */
+@media (min-width: 992px) {
+
+    .carousel-inner .carousel-item-right.active,
+    .carousel-inner .carousel-item-next {
+        transform: translateX(33%);
+    }
+
+    .carousel-inner .carousel-item-left.active,
+    .carousel-inner .carousel-item-prev {
+        transform: translateX(-33%);
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-inner .carousel-item>div {
+        display: none;
+    }
+
+    .carousel-inner .carousel-item>div:first-child {
+        display: block;
+    }
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+    display: flex;
+}
+
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left {
+    transform: translateX(0);
+}

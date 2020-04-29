@@ -2,7 +2,7 @@
 include("../include/db.php");
 if(isset($_GET['id'])){
     $id = $_GET['id'];
-    $get_category_info = "SELECT * FROM categories WHERE id = $id";
+    $get_category_info = "SELECT * FROM categories WHERE id = '$id'";
     
     $run_get_categories = mysqli_query($con, $get_category_info);
     

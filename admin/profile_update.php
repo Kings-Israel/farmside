@@ -55,7 +55,7 @@ if(isset($_POST['change_photo'])){
         $insert_query = "UPDATE admins SET admin_photo = '$image' WHERE id = '$admin_id'";
         $run_insert_query = mysqli_query($con, $insert_query);
         if($run_insert_query){
-            echo"<script>window.open('edit_profile.php', '_self')</script>";
+            echo"<script>window.open('index.php?profile', '_self')</script>";
         } else {
             echo"<script>alert('Error changing photo')</script>";
         }

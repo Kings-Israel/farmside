@@ -46,5 +46,49 @@ function sendMail(){
         </div>
         <?php
     }
+
+    if(isset($_GET['reply_message'])){
+        global $con;
+        $message_id = $_GET['reply_message'];
+
+        $get_booking_info = "SELECT * FROM messages WHERE id = '$message_id'";
+        $run_get_booking_info = mysqli_query($con, $get_booking_info);
+        while($row_info = mysqli_fetch_array($run_get_booking_info)){
+            $mail_name = $row_info['name'];
+            $mail_address = $row_info['email'];
+        }
+        ?>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+        <h1 class="animated slideInDown delay-2s">Reply Message</h1>
+        <div id="page-container" class="container animated slideInRight">
+            <form action="mailHandler.php" method="POST" id="mailForm" enctype="multipart/form-data">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><b><?php echo $mail_name ?></b></h5>
+                    </div>
+                    <div class="card-body">
+                        <input type="number" name="message_id" id="message_id" value="<?php echo $message_id ?>" class="form-control" style="display: none">
+                        <label for="message_address"><b>To</b>:</label>
+                        <input type="email" name="message_address" id="message_address" value="<?php echo $mail_address ?>" class="form-control">
+                        <label for="message_subject"><b>Subject</b>:</label>
+                        <input type="text" name="message_subject" id="mail_subject" class="form-control">
+                        <label for="message"><b>Message</b>:</label>
+                        <textarea name="message" id="message" rows="10" class="form-control"></textarea>
+                    </div>
+                    <div class="card-footer">
+                        <div class="message" style="float: right">
+                            <div id="info_area"></div>
+                        </div>
+                        <input type="submit" name="reply_message" id="send_mail" value="Send" class="btn btn-sm btn-outline-primary">
+                        <button type="button" id="cancel_btn" onclick="window.history.back()" class="btn btn-sm btn-outline-secondary">Cancel</button>
+                    </div>
+                </div>
+            </form>
+            <div id="mail_info" style="display: none">
+                <a href="#close-modal" rel="modal:close" class="close-modal ">Close</a>
+            </div>
+        </div>
+        <?php
+    }
 }
 ?>

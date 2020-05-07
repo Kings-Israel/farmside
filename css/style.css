@@ -21,7 +21,6 @@ li a.nav-link:hover{
     object-fit: cover;
 }
 
-
 #about {
     background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(../images/Artboard\ 1.jpg);
     background-repeat: no-repeat;
@@ -119,6 +118,10 @@ h1 {
 }
 
 #footer {
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    width: 100%;
     background-color: black;
     color: #34A747;
 }
@@ -177,11 +180,11 @@ h1 {
     object-fit: cover;
 }
 
-
 .ferry {
     padding: 0px 0px 0px;
     text-align: left;
-} 
+}
+
 #info_area {
     text-align: center;
     text-transform: uppercase;
@@ -314,12 +317,15 @@ input[type="text"], input[type="email"], select, input[type="number"], select.dr
     border-bottom: 1px solid #ebebeb;
 }
 
+
 /*********************************************************************/
 /* Bootstrap 4 Multiple Item Carousel */
 /*********************************************************************/
 /* medium - display 2  */
 @media (min-width: 768px) {
-
+    .navbar button {
+        background-color: #fff;
+    }
     .carousel-inner .carousel-item-right.active,
     .carousel-inner .carousel-item-next {
         transform: translateX(50%);
@@ -329,11 +335,11 @@ input[type="text"], input[type="email"], select, input[type="number"], select.dr
     .carousel-inner .carousel-item-prev {
         transform: translateX(-50%);
     }
+
 }
 
 /* large - display 3 */
 @media (min-width: 992px) {
-
     .carousel-inner .carousel-item-right.active,
     .carousel-inner .carousel-item-next {
         transform: translateX(33%);
@@ -346,12 +352,32 @@ input[type="text"], input[type="email"], select, input[type="number"], select.dr
 }
 
 @media (max-width: 768px) {
+    .navbar button {
+        background-color: #fff;
+    }
+
+    #videography-header h1 {
+        font-size: 42px;
+    }
+
+    .video-info h3{
+        margin-left: 10px;
+        text-align: center;
+    }
+    .video-info p {
+        margin-right: 25px;
+        text-align: center;
+    }
     .carousel-inner .carousel-item>div {
         display: none;
     }
 
     .carousel-inner .carousel-item>div:first-child {
         display: block;
+    }
+
+    .carousel-item img {
+        float: left;
     }
 }
 

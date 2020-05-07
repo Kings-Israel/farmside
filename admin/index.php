@@ -24,6 +24,7 @@ include("pages/edit_profile.php");
 
     <link rel="stylesheet" href="css/style.css">
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <title>Farmside Admin</title>
 </head>
 <body>

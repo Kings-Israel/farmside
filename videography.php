@@ -7,14 +7,13 @@ include("include/db.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all">
+    <link rel="stylesheet" href="css/style.css">
     <title>Farmside Media - Videography</title>
 </head>
 <body>
@@ -83,15 +82,6 @@ include("include/db.php");
 
                             <!--Footer-->
                             <div class="modal-footer justify-content-center">
-                                <span class="mr-4">Spread the word!</span>
-                                <a type="button" class="btn-floating btn-sm btn-fb"><i class="fa fa-facebook-f"></i></a>
-                                <!--Twitter-->
-                                <a type="button" class="btn-floating btn-sm btn-tw"><i class="fa fa-twitter"></i></a>
-                                <!--Google +-->
-                                <a type="button" class="btn-floating btn-sm btn-gplus"><i class="fa fa-google-plus"></i></a>
-                                <!--Linkedin-->
-                                <a type="button" class="btn-floating btn-sm btn-ins"><i class="fa fa-linkedin"></i></a>
-
                                 <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-4" data-dismiss="modal">Close</button>
                             </div>
 
@@ -104,7 +94,7 @@ include("include/db.php");
 
                 <a><img class="img-fluid z-depth-1" src="video_thumbnails/<?php echo "$video_thumbnail" ?>" alt="video" data-toggle="modal" data-target="#<?php echo "$video_id" ?>"></a>
 
-                </div>
+            </div>
                 <div class="col-md-7">
                     <div class="video-info">
                         <h3><?php echo "$video_title" ?></h3>
@@ -122,31 +112,10 @@ include("include/db.php");
 include("footer.php")
 ?>
 <script src="js/script.js"></script>
-<script src="js/jquery-ui.js"></script>
-<script src="js/smooth-scroll.js"></script>
 <script>
-    var scroll = new SmoothScroll('a[href*="#"]');
-</script>
-<script>
-    $(function() {
-        $( "#datepicker").datepicker();
+    $('body').on('hidden.bs.modal', '.modal', function () {
+        $('video').trigger('pause');
     });
 </script>
 </body>
 </html>
-<?php
-if(isset($_POST['submit'])){
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $event_type = $_POST['event_type'];
-    $date = $_POST['date'];
-
-    $add_to_db = "INSERT INTO bookings (name, email, event_type, event_date) VALUES ('$name', '$email', '$event_type', '$date')";
-
-    $run_add = mysqli_query($con, $add_to_db);
-
-    if($run_add){
-        echo"<script>window.open('videography.php', '_self')</script>";
-    }
-}
-?>

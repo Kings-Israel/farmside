@@ -3,12 +3,13 @@ function getActions(){
     if(isset($_GET["more_actions"])){
         global $con;
         ?>
+        <link rel="stylesheet" href="../../css/baguetteBox.min.css">
         <div id="page-container">
             <h1 class="mt-2 animated slideInDown">Advanced Options</h1>
             <div class="row mb-5">
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header animated slideInLeft">
                             <h4>Edit Categories</h4>
                         </div>
                         <div class="card-body">
@@ -72,85 +73,153 @@ function getActions(){
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6  animated slideInRight">
-                    <div class="row">
+                <div class="col-md-6">
+                    <div class="row delete-media">
                         <div class="col-sm-6">
-                            <div class="card">
+                            <div class="card animated slideInRight">
                                 <div class="card-header"><h4>Delete Photos</h4></div>
                                 <div class="card-body" id="delete_photo_info" style="height: 95px"><h5>Click Below to Delete All Photos in The Gallery</h5></div>
                                 <div class="card-footer"><button class="btn btn-sm btn-outline-danger" id="delete_photos">Delete All Photos</button></div>
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <div class="card">
+                            <div class="card delete_video_card animated slideInRight">
                                 <div class="card-header"><h4>Delete Videos</h4></div>
                                 <div class="card-body" id="delete_video_info" style="height: 95px"><h5>Click Below to Delete All Videos in The Gallery</h5></div>
                                 <div class="card-footer"><button class="btn btn-sm btn-outline-danger" id="delete_videos">Delete All Videos</button></div>
                             </div>
                         </div>
                     </div>
-                    <h3 class="mt-1">Carousel Images</h3>
+                    <h3 class="mt-1 animated slideInRight">Carousel Images</h3>
                     <div class="row">
-                        <table class="table table-striped" style="width: 98%">
-                            <thead>
-                                <th>Image Name</th>
-                                <th>Change</th>
-                            </thead>
-                            <?php
-                            $get_images = 'SELECT * FROM carousel_images';
+                        <?php
+                        function getCarouselPhoto($id){
+                            global $con;
+                            $get_images = "SELECT * FROM carousel_images WHERE id='$id'";
                             $run_get_images = mysqli_query($con, $get_images);
-                            while($row_images = mysqli_fetch_assoc($run_get_images)){
-                                $image_id = $row_images['id'];
-                                $image_name = $row_images['image_name'];
-                            ?>
-                            <tbody>
-                                <tr>
-                                    <td class="image_name"><?php echo $image_name ?></td>
-                                    <td><button class="btn btn-sm btn-outline-primary change_carousel_photo" data-toggle="modal" data-target=".<?php echo $image_id ?>" id="">Change</button></td>
-                                </tr>
-                            </tbody>
-                            <div class="modal fade <?php echo $image_id ?>" id="addMediaModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-
-                                    <!--Content-->
-                                    <div class="modal-content">
-
-                                        <!--Header-->
-                                        <div class="modal-header">
-                                            <h2>Change Photo</h2>
-                                        </div>
-
-                                        <!--Body-->
-                                        <div class="modal-body justify-content-center">
-                                            <form class="form" action="carousel.php" method="POST" enctype="multipart/form-data" id="uploadMedia">
-                                                <input type="number" name="category_id" id="category_id" style="display: none" value="<?php echo $image_id ?>">
-                                                <label for="image">Choose Photo</label>
-                                                <input type="file" name="media" id="media" class="form-control" accept=".jpg, .png, .jpeg" required>
-                                                <input type="submit" value="Submit" class="btn btn-outline-primary btn-rounded mt-2 mb-2">
-                                            </form>
-                                            <div id="progress-div">
-                                                <div id="progress-bar"></div>
-                                                <div id="status"></div>
+                            $row_images = mysqli_fetch_assoc($run_get_images);
+                            $image_name = $row_images['image_name'];
+                            return $image_name;
+                        }
+                        ?>
+                        <div class="col-sm-6">
+                            <div class="card animated slideInRight">
+                                <div class="card-header">
+                                    <h5>Carousel Image 1</h5>
+                                </div>
+                                <form action="carousel.php" id="changeCarouselPhoto1" enctype="multipart/form-data" method="POST">
+                                    <div class="card-body tz-gallery">
+                                        <a class="lightbox" href="../../images/carousel/<?php echo getCarouselPhoto(1) ?>">
+                                            <img class="carousel_image_preview" src="../../images/carousel/<?php echo getCarouselPhoto(1) ?>" alt="Image 1">
+                                        </a>
+                                        <input type="number" name="carousel_id" id="carousel_id" value="1" style="display: none">
+                                        <input type="file" name="carousel_photo" id="carousel_photo" class="form-control mt-2 p-1">
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <button type="submit" name="change_carousel_photo" class="btn btn-sm btn-outline-primary">Change Photo</button>
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <div class="carousel_upload_status_1 pt-1">
+                                                </div>
                                             </div>
                                         </div>
-                                        <!--Footer-->
-                                        <div class="modal-footer justify-content-center pt-2">
-                                            <button type="button" class="btn btn-outline-primary btn-rounded btn-md ml-2" data-dismiss="modal">Close</button>
-                                        </div>
-
                                     </div>
-                                    <!--/.Content-->
-
-                                </div>
+                                </form>
                             </div>
-                            <?php
-                            }
-                            ?>
-                        </table>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card animated slideInRight image_card">
+                                <div class="card-header">
+                                    <h5>Carousel Image 2</h5>
+                                </div>
+                                <form action="carousel.php" id="changeCarouselPhoto2" enctype="multipart/form-data" method="POST">
+                                    <div class="card-body tz-gallery">
+                                        <a class="lightbox" href="../../images/carousel/<?php echo getCarouselPhoto(2) ?>">
+                                            <img class="carousel_image_preview" src="../../images/carousel/<?php echo getCarouselPhoto(2) ?>" alt="Image 1">
+                                        </a>
+                                        <input type="number" name="carousel_id" id="carousel_id" value="2" style="display: none">
+                                        <input type="file" name="carousel_photo" id="carousel_photo" class="form-control mt-2 p-1">
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <button type="submit" name="change_carousel_photo" class="btn btn-sm btn-outline-primary">Change Photo</button>
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <div class="carousel_upload_status_2 pt-1">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card animated slideInRight">
+                                <div class="card-header">
+                                    <h5>Carousel Image 3</h5>
+                                </div>
+                                <form action="carousel.php" id="changeCarouselPhoto3" enctype="multipart/form-data" method="POST">
+                                    <div class="card-body tz-gallery">
+                                        <a class="lightbox" href="../../images/carousel/<?php echo getCarouselPhoto(3) ?>">
+                                            <img class="carousel_image_preview" src="../../images/carousel/<?php echo getCarouselPhoto(3) ?>" alt="Image 1">
+                                        </a>
+                                        <input type="number" name="carousel_id" id="carousel_id" value="3" style="display: none">
+                                        <input type="file" name="carousel_photo" id="carousel_photo" class="form-control mt-2 p-1">
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <button type="submit" name="change_carousel_photo" class="btn btn-sm btn-outline-primary">Change Photo</button>
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <div class="carousel_upload_status_3 pt-1">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card animated slideInRight image_card">
+                                <div class="card-header">
+                                    <h5>Carousel Image 4</h5>
+                                </div>
+                                <form action="carousel.php" id="changeCarouselPhoto4" enctype="multipart/form-data" method="POST">
+                                    <div class="card-body tz-gallery">
+                                        <a class="lightbox" href="../../images/carousel/<?php echo getCarouselPhoto(4) ?>">
+                                            <img class="carousel_image_preview" src="../../images/carousel/<?php echo getCarouselPhoto(4) ?>" alt="Image 1">
+                                        </a>
+                                        <input type="number" name="carousel_id" id="carousel_id" value="4" style="display: none">
+                                        <input type="file" name="carousel_photo" id="carousel_photo" class="form-control mt-2 p-1">
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col-sm-5">
+                                                <button type="submit" name="change_carousel_photo" class="btn btn-sm btn-outline-primary">Change Photo</button>
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <div class="carousel_upload_status_4 pt-1">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+        <script>
+            baguetteBox.run('.tz-gallery');
+        </script>
         <?php
     }
 }

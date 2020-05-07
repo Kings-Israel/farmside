@@ -21,9 +21,9 @@ function getMessages(){
         $run_get_messages = mysqli_query($con, $get_messages);
         ?>
         <h1 class="animated slideInDown delay-2s">Messages</h1>
-        <div id="page-container">
+        <div id="page-container" class="table-responsive">
             <table class="table table-striped table-dark animated slideInRight">
-                <thead>
+                <thead class="desktop_view">
                     <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
@@ -40,7 +40,7 @@ function getMessages(){
                     $message = $row_messages['message'];
                     $is_reviewed = $row_messages['is_reviewed'];
                 ?>
-                <tbody>
+                <tbody class="desktop_view">
                     <tr>
                         <td><?php echo "$user_name" ?></td>
                         <td><?php echo "$user_email" ?></td>
@@ -73,7 +73,6 @@ function getMessages(){
                     </tr>
                     <tr>
                 </tbody>
-                
                 <div class="modal fade" id="<?php echo "$message_id" ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-md" role="document">
 

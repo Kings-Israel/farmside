@@ -24,7 +24,7 @@ function getPhotos(){
                         <h1>Media</h1>
                     </div>
                     <div class="col-sm-9">
-                        <h3 class="mr-5 pt-2 animated slideInDown delay-4s">Photos</h3>
+                        <h3 class="mr-5 pt-2 animated slideInDown delay-4s" id="media_label">Photos</h3>
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@ function getPhotos(){
             </div>
         </div>
     <section id="photos">
-        <div id="page-container">
+        <div id="page-container" class="table-responsive">
             <table class="table table-striped table-dark animated slideInLeft">
                 <thead>
                     <tr>

@@ -257,22 +257,7 @@ $(document).ready(function(){
         });
     });
 
-    $("#admin_form_card").ready(function(){
-        var id = $("#admin_id").val();
 
-        $.ajax({
-            url: 'profile_update.php',
-            method: 'GET',
-            data: {'admin_id': id},
-            success: function(response){
-                response1 = JSON.parse(response);
-                $("#admin_name").val(response1['admin_name']);
-                $("#admin_email").val(response1['admin_email']);
-                $("#admin_phone_number").val(response1['phone_number']);
-                $("#admin_description").val(response1['admin_description']);
-            }
-        });
-    });
 
     $.validator.addMethod("phoneRegex", function(value, element){
         return this.optional(element) || /^\s*(?:\+?((254|0)?))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/.test(value);
@@ -338,35 +323,112 @@ $(document).ready(function(){
         }
     });
 
-    $(".change_carousel_photo").click(function(){
-        var id = this.id;
-        $("#carousel_id").val(id);
-        $(".changeCarouselPhoto").css("display", "block");
+    $('#changeCarouselPhoto1').validate({
+        errorElement: "div",
+        errorLabelContainer: ".carousel_upload_status_1",
+        rules: {
+            carousel_photo: {
+                required: true,
+            },
+        },
+        messages: {
+            carousel_photo: {
+                required: "Select an image",
+            },
+        },
+        submitHandler: function(form){
+            $('#changeCarouselPhoto1').ajaxSubmit({
+                success: function(response) {
+                    if(response == "success"){
+                        document.location.reload();
+                    } else {
+                        alert("Failed");
+                    }
+                },
+                resetForm: true
+            });
+            return false;
+        }
     });
-
-    // $('#changeCarouselPhoto').submit(function(e){
-    //     if($('#image_name').val()){
-    //         $(this).ajaxSubmit({
-    //             target: '',
-    //             beforeSubmit: function() {
-    //                 $("#status").html('0%');
-    //             },
-    //             uploadProgress: function(event, position, total, percentComplete){
-    //                 $("#status").html('<div id="progress-status">'+percentComplete+'%</div>');
-    //             },
-    //             success: function(response) {
-    //                 if(response == "success"){
-    //                     document.location.reload();
-    //                 } else {
-    //                     alert("failed");
-    //                 }
-    //             },
-    //             resetForm: true
-    //         });
-    //         return false;
-    //     }
-    // });
+    $('#changeCarouselPhoto2').validate({
+        errorElement: "div",
+        errorLabelContainer: ".carousel_upload_status_2",
+        rules: {
+            carousel_photo: {
+                required: true,
+            },
+        },
+        messages: {
+            carousel_photo: {
+                required: "Select an image",
+            },
+        },
+        submitHandler: function(form){
+            $('#changeCarouselPhoto2').ajaxSubmit({
+                success: function(response) {
+                    if(response == "success"){
+                        document.location.reload();
+                    } else {
+                        alert("Failed");
+                    }
+                },
+                resetForm: true
+            });
+            return false;
+        }
+    });
+    $('#changeCarouselPhoto3').validate({
+        errorElement: "div",
+        errorLabelContainer: ".carousel_upload_status_3",
+        rules: {
+            carousel_photo: {
+                required: true,
+            },
+        },
+        messages: {
+            carousel_photo: {
+                required: "Select an image",
+            },
+        },
+        submitHandler: function(form){
+            $('#changeCarouselPhoto3').ajaxSubmit({
+                success: function(response) {
+                    if(response == "success"){
+                        document.location.reload();
+                    } else {
+                        alert("Failed");
+                    }
+                },
+                resetForm: true
+            });
+            return false;
+        }
+    });
+    $('#changeCarouselPhoto4').validate({
+        errorElement: "div",
+        errorLabelContainer: ".carousel_upload_status_4",
+        rules: {
+            carousel_photo: {
+                required: true,
+            },
+        },
+        messages: {
+            carousel_photo: {
+                required: "Select an image",
+            },
+        },
+        submitHandler: function(form){
+            $('#changeCarouselPhoto4').ajaxSubmit({
+                success: function(response) {
+                    if(response == "success"){
+                        document.location.reload();
+                    } else {
+                        alert("Failed");
+                    }
+                },
+                resetForm: true
+            });
+            return false;
+        }
+    });
 });
-
-
-

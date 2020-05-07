@@ -1,6 +1,5 @@
 <?php
  include("include/db.php");
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,12 +9,12 @@
     <link rel="stylesheet" href="css/indexpage.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.2/jquery.modal.min.js"></script>
-
 
     <title>Farmside Media</title>
 </head>
@@ -47,19 +46,29 @@
         </div>
     </section>
     <section id="carousel">
+        <?php
+        function getCarouselPhoto($id){
+            global $con;
+            $get_images = "SELECT * FROM carousel_images WHERE id='$id'";
+            $run_get_images = mysqli_query($con, $get_images);
+            $row_images = mysqli_fetch_assoc($run_get_images);
+            $image_name = $row_images['image_name'];
+            return $image_name;
+        }
+        ?>
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-            <div class="carousel-item active" id="homepage-carousel" data-interval="10000">
-                    <img src="images/Artboard 3.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-item active" id="homepage-carousel" data-interval="10000">
+                    <img src="images/carousel/<?php echo getCarouselPhoto(1) ?>" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item" id="homepage-carousel" data-interval="5000">
-                    <img src="images/carousel 1.jpg" class="d-block w-100" alt="...">
+                    <img src="images/carousel/<?php echo getCarouselPhoto(2) ?>" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item" id="homepage-carousel" data-interval="5000">
-                    <img src="images/carousel 2.jpg" class="d-block w-100" alt="...">
+                    <img src="images/carousel/<?php echo getCarouselPhoto(3) ?>" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item" id="homepage-carousel" data-interval="5000">
-                    <img src="images/carousel 3.jpg" class="d-block w-100" alt="...">
+                    <img src="images/carousel/<?php echo getCarouselPhoto(4) ?>" class="d-block w-100" alt="...">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -99,27 +108,27 @@
                 ?>
             </div>
             <div class="row">
+            <?php
+                $admin_details = "SELECT * FROM admins WHERE id = '6'";
+                $run_admin_details = mysqli_query($con, $admin_details);
+                while($row_admin_details = mysqli_fetch_array($run_admin_details)){
+                    $admin_name = $row_admin_details['admin_name'];
+                    $admin_phone_number = $row_admin_details['phone_number'];
+                    $admin_info = $row_admin_details['description'];
+                    $admin_photo = $row_admin_details['admin_photo'];
+                ?>
+                <div class="col-md-4" id="admin_photo">
+                    <img src="images/admin_photos/<?php echo $admin_photo ?>" class="d-block w-100" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="about-text">
+                        <h3><?php echo $admin_name ?></h3>
+                        <p><?php echo $admin_info ?></p>
+                    </div>
+                </div>
                 <?php
-                    $admin_details = "SELECT * FROM admins WHERE id = '6'";
-                    $run_admin_details = mysqli_query($con, $admin_details);
-                    while($row_admin_details = mysqli_fetch_array($run_admin_details)){
-                        $admin_name = $row_admin_details['admin_name'];
-                        $admin_phone_number = $row_admin_details['phone_number'];
-                        $admin_info = $row_admin_details['description'];
-                        $admin_photo = $row_admin_details['admin_photo'];
-                    ?>
-                    <div class="col-md-4" id="admin_photo">
-                        <img src="images/admin_photos/<?php echo $admin_photo ?>" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="about-text">
-                            <h3><?php echo $admin_name ?></h3>
-                            <p><?php echo $admin_info ?></p>
-                        </div>
-                    </div>
-                    <?php
-                    }
-                    ?>
+                }
+                ?>
             </div>
     </section>
     <section id="portfolio">
@@ -131,9 +140,9 @@
                     <hr/>
                     <div class="portfolio-image">
                         <img src="images/photography.jpg" alt="">
-                        <h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio blanditiis iusto iure doloribus reiciendis quia
+                        <h5 class="portfolio-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio blanditiis iusto iure doloribus reiciendis quia
                         expedita necessitatibus illo et minima</h5>
-                        <h3><a href="photography.php">See More</a></h3>
+                        <h3><a class="portfolio-link" href="photography.php">See More</a></h3>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -141,9 +150,9 @@
                     <hr/>
                     <div class="portfolio-image">
                         <img src="images/videography.jpg" alt="">
-                        <h5>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio blanditiis iusto iure doloribus reiciendis quia
+                        <h5 class="portfolio-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio blanditiis iusto iure doloribus reiciendis quia
                         expedita necessitatibus illo et minima</h5>
-                        <h3><a href="videography.php">See More</a></h3>
+                        <h3><a class="portfolio-link" href="videography.php">See More</a></h3>
                     </div>
                 </div>
             </div>
@@ -172,7 +181,9 @@
                         <div class="form-group">
                             <textarea name="message" id="message" class="form-control" placeholder="Brief Message" rows="4"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary" id="send_message" name="send_message">SEND MESSAGE</button>
+                        <div class="submit_button">
+                            <button type="submit" class="btn btn-primary" id="send_message" name="send_message">SEND MESSAGE</button>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -182,7 +193,7 @@
                         <a href="#"><i class="fa fa-twitter pl-5"></i>Farmside media</a>
                     </div>
                     <div class="col-md-5">
-                        <a href="#"><i class="fa fa-phone"></i>+254 (0) 796812044 or +254 (0) 708290980</a>
+                        <i class="fa fa-phone"></i><span class="phone_numbers mb-5">+254 (0) 796812044 or +254 (0) 708290980</span>
                     </div>
                 </div>
             <div class="container" style="height: 20px">

@@ -29,9 +29,9 @@ function getBookings(){
         $run_get_events = mysqli_query($con, $get_events);
         ?>
         <h1 class="animated slideInDown delay-2s">Bookings</h1>
-        <div id="page-container">
-            <table class="table table-striped table-dark animated slideInRight">
-                <thead>
+        <div id="page-container" class="table-responsive">
+            <table class="table table-striped table-dark table-hover animated slideInRight">
+                <thead class="desktop_view">
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
@@ -49,7 +49,7 @@ function getBookings(){
                     $event_date = $row_bookings['event_date'];
                     $is_reviewed = $row_bookings['is_reviewed'];
                 ?>
-                <tbody>
+                <tbody class="desktop_view">
                     <tr>
                         <td><?php echo $mail_name ?></td>
                         <td><?php echo $mail_address ?></td>

@@ -14,7 +14,6 @@ function editProfile(){
             $admin_photo = $row_details['admin_photo'];
         }
         ?>
-        
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
         <div id="page-container">
             <h1 class="mt-2 animated slideInDown">Edit Profile</h1>
@@ -28,7 +27,7 @@ function editProfile(){
                 <div class="card-body" id="admin_form_card">
                     <div class="row">
                         <div class="col-lg-8 animated slideInLeft">
-                            <form action="profile_update.php" method="POST" id="admin_details" enctype="multipart/form-data">
+                            <form class="form" action="profile_update.php" method="POST" id="admin_details" enctype="multipart/form-data">
                                 <input type="number" name="admin_id" id="admin_id" style="display: none" value="<?php echo $admin_id ?>">
                                 <label for="Name"><b>Name</b></label>
                                 <input type="text" name="admin_name" class="form-control" id="admin_name" placeholder="Enter Name">
@@ -53,7 +52,7 @@ function editProfile(){
                                 <h5 class="ml-5">Current Profile Photo</h5>
                                 <img src="../images/admin_photos/<?php echo $admin_photo ?>" alt="Image">
                             </div>
-                            <form action="profile_update.php" method="post" enctype="multipart/form-data" class="mt-4">
+                            <form action="profile_update.php" method="post" enctype="multipart/form-data" class="profile_photo_form mt-4">
                                 <input type="number" name="admin_id" id="admin_id" style="display: none" value="<?php echo $admin_id ?>">
                                 <label for="admin_photo"><b>Choose a photo</b></label>
                                 <input type="file" name="admin_photo" class="form-control" id="admin_photo">
@@ -65,7 +64,22 @@ function editProfile(){
             </div>
         </div>
         <script>
+            $("#admin_form_card").ready(function(){
+                var id = $("#admin_id").val();
 
+                $.ajax({
+                    url: 'profile_update.php',
+                    method: 'GET',
+                    data: {'admin_id': id},
+                    success: function(response){
+                        response1 = JSON.parse(response);
+                        $("#admin_name").val(response1['admin_name']);
+                        $("#admin_email").val(response1['admin_email']);
+                        $("#admin_phone_number").val(response1['phone_number']);
+                        $("#admin_description").val(response1['admin_description']);
+                    }
+                });
+            });
         </script>
         <?php
     }

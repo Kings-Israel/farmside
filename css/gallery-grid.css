@@ -80,6 +80,10 @@ body {
         padding: 0;
     }
 
+    .navbar button {
+        background-color: #fff;
+    }
+
     .container.gallery-container {
         border-radius: 0;
     }

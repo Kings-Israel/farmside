@@ -24,7 +24,7 @@ function getVideos(){
                         <h1 class="mt-2">Media</h1>
                     </div>
                     <div class="col-sm-9">
-                        <h3 class="mr-5 pt-3 animated slideInDown delay-4s">Videos</h3>
+                        <h3 class="mr-5 pt-3 animated slideInDown delay-4s" id="media_label">Videos</h3>
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@ function getVideos(){
             </div>
         </div>
         <section id="videos">
-        <div id="page-container">
+        <div id="page-container" class="table-responsive">
             <table class="table table-striped table-dark animated slideInLeft">
                 <thead>
                     <tr>

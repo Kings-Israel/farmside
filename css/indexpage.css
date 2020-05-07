@@ -12,8 +12,8 @@
 
 #homepage-carousel img {
     width: 100%;
-    height: 728px;
-    object-fit: cover;
+    height: 725px;
+    object-fit: contain;
 }
 
 
@@ -154,60 +154,111 @@ input[type="text"], input[type="email"], input[type="number"], textarea#message 
     object-fit: cover;
 }
 
-@media (max-width: 1024px) {
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
-    .navbar button {
-        background-color: #fff;
-    }
-    #carousel img {
-        width: 1024px;
-        height: 480px;
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+@media only screen and (max-width: 1024px){
+    #homepage-carousel img {
+        height: 495px;
         object-fit: contain;
     }
 
-    #about, #portfolio, #contact {
-        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(../images/Farmside.png);
-        background-size: contain;
-        background-position: center;
-        color: #efefef;
-        background-attachment: fixed;
-        padding-top: 50px;
-        padding-bottom: 50px;
+    #admin_photo img {
+        height: 280px;
     }
-    
+
+    .about-text {
+        padding-top: 50px;
+    }
+
     .portfolio-image img {
-        width: 300px;
-        height: 150px;
+        width: 420px;
+        margin-left: 0;
         object-fit: cover;
     }
-    
-    #contact button {
-    background-color: #34A747;
-    float:left;
-    }
 
+    #contact {
+        padding-top: 40px;
+    }
     #contact .fa {
-        color: #34A747;
-        font-size: xx-large;
-        padding-left: 50px;
-    }
-
-    #contact a {
-        text-decoration: none;
-        float: left;
+        margin: 15px;
+        margin-left: 10px;
     }
 }
 
-@media (max-width: 768px) {
-    #carousel img {
-        width: 480px;
-        height: 250px;
+@media only screen and (max-width: 768px){
+    .navbar button {
+        background-color: #fff;
+    }
+
+    #homepage-carousel img {
+        height: 370px;
         object-fit: contain;
     }
+
+    #admin_photo img {
+        height: 220px;
+    }
+
+    .about-text {
+        padding-top: 30px;
+    }
+
     .portfolio-image img {
-        width: 350px;
-        height: 150px;
+        width: 320px;
+        margin-left: 0;
         object-fit: cover;
-        margin-left: 40px;
+    }
+
+    #contact {
+        padding-top: 50px;
+    }
+    #contact .fa {
+        margin: 5px;
+        margin-left: 0px;
+    }
+}
+
+@media only screen and (max-width: 420px){
+    #homepage-carousel img {
+        height: 200px;
+        object-fit: contain;
+    }
+    #admin_photo img {
+        height: 350px;
+        object-fit: cover;
+    }
+
+    .portfolio-image img {
+        width: 360px;
+        margin-left: 0;
+        object-fit: cover;
+    }
+
+    .portfolio-image h3 {
+        margin-top: -20px;
+        margin-bottom: 30px;
+    }
+}
+
+@media only screen and (max-width: 375px){
+    #homepage-carousel img {
+        height: 180px;
+        object-fit: contain;
+    }
+
+    .portfolio-image img {
+        width: 320px;
+        margin-left: 0;
+        object-fit: cover;
     }
 }

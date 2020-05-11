@@ -17,7 +17,7 @@ html {
     z-index: 1;
     background-color: #34A747;
   margin-left: -15rem;
-  min-height: 720px;
+  min-height: 750px;
   overflow-x: hidden;
   -webkit-transition: margin .25s ease-out;
   -moz-transition: margin .25s ease-out;

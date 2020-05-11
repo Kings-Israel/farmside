@@ -30,6 +30,8 @@ function sendMail(){
                         <input type="text" name="mail_subject" id="mail_subject" value="<?php echo get_category($event) ?>" class="form-control">
                         <label for="mail_message"><b>Message</b>:</label>
                         <textarea name="mail_message" id="mail_message" rows="10" class="form-control"></textarea>
+                        <label for="quotation"><b>Send with quotation</b>:</label>
+                        <input type="checkbox" name="add_quotation" id="add_quotation" class="mt-2">
                     </div>
                     <div class="card-footer">
                         <div class="message" style="float: right">

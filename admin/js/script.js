@@ -45,6 +45,15 @@ $(document).ready(function(){
                         $(".modal_close").on("click", function(){
                             window.open(window.history.back(), "_self");
                         });
+                    } else if(response == "File not attached") {
+                        $("#mail_info").html("<h3 class='text-align-center pb-2'>File Not Attached.\nPlease Try Again</h3>\n<a href='#' rel='modal:close'>Click to close</a>");
+                        $("#mail_info").modal({
+                            fadeDuration: 500,
+                            showClose: false,
+                        }).css("height", "auto");
+                        $("#send_mail").val("Send")
+                        $("#send_mail").attr("disabled", false)
+                        $("#cancel_btn").attr("disabled", false);
                     } else {
                         $("#mail_info").html("<h3 class='text-align-center pb-2'>Mail Not Sent.\nPlease Try Again</h3>\n<a href='#' rel='modal:close'>Click to close</a>");
                         $("#mail_info").modal({
@@ -201,6 +210,30 @@ $(document).ready(function(){
                     }
                 },
                 resetForm: true,
+            });
+        }
+    });
+
+    $("#quotationForm").validate({
+        errorElement: "span",
+        errorLabelContainer: "#quotationInfo",
+        rules: {
+            quotation: "required",
+        },
+        messages: {
+            quotation: {
+                required: "Please select a file",
+            },
+        },
+        submitHandler: function(form){
+            $("#quotationForm").ajaxSubmit({
+                success: function(response){
+                    if(response == "success"){
+                        document.location.reload();
+                    } else {
+                        $("#quotationInfo").html("Error Uploading file");
+                    }
+                }
             });
         }
     });

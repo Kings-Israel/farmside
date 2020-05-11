@@ -21,7 +21,13 @@ if(isset($_POST['send_mail'])){
     $mail ->Subject = $mailSub;
     $mail ->Body = $mailMsg;
     $mail ->addAddress($mailTo);
-
+    if(isset($_POST['add_quotation'])){
+        $get_file = "SELECT * FROM quotation";
+        $run_get_file = mysqli_query($con, $get_file);
+        $row_file = mysqli_fetch_array($run_get_file);
+        $filename = $row_file['quotation'];
+        $mail ->addAttachment('includes/Quotations/'.$filename, 'Quotation');
+    }
     if($mail->send()){
         $change_status = "UPDATE bookings SET is_reviewed = '1' WHERE id = '$mail_id'";
         $run_change_status = mysqli_query($con, $change_status);

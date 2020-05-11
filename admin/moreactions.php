@@ -45,6 +45,24 @@ if(isset($_POST['update_cat'])){
     }
 }
 
+if(isset($_POST['upload_quotation'])){
+    $quotation = $_FILES['quotation']['name'];
+    $quotation_tmp = $_FILES['quotation']['tmp_name'];
+
+    $upload_quotation = move_uploaded_file($quotation_tmp, "includes/Quotations/$quotation");
+    if($upload_quotation){
+        $upload_to_db_query = "UPDATE quotation SET quotation = '$quotation' WHERE id = 1";
+        $upload_to_db = mysqli_query($con, $upload_to_db_query);
+        if($upload_to_db){
+            echo "success";
+        } else {
+            echo "failed";
+        }
+    } else {
+        echo "failed";
+    }
+}
+
 if(isset($_POST['change_carousel_photo'])){
     $carousel_id = $_POST['carousel_id'];
     $image_name = $_FILES['image_name']['name'];

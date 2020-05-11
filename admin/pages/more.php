@@ -72,6 +72,28 @@ function getActions(){
                             </form>
                         </div>
                     </div>
+                    <div class="quotation_section animated slideInLeft">
+                        <div class="card">
+                            <div class="card-header"><h4>Quotation</h4></div>
+                            <div class="card-body">
+                                <h5>Current Quotation</h5>
+                                <?php
+                                $get_quotations = "SELECT * FROM quotation";
+                                $run_get_quotation = mysqli_query($con, $get_quotations);
+                                while($row_quotation = mysqli_fetch_array($run_get_quotation)){
+                                    $quotation = $row_quotation['quotation'];
+                                }
+                                echo $quotation;
+                                ?>
+                                <form action="moreactions.php" method="post" id="quotationForm" class="mt-2">
+                                    <label for="upload_quotation"><b>Upload Quotation</b>:</label>
+                                    <input type="file" name="quotation" id="quotation" class="form-control">
+                                    <input type="submit" name="upload_quotation" value="Submit" class="btn btn-md btn-outline-primary mt-1">
+                                    <span class="m-5 pt-5" id="quotationInfo"></span>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div class="row delete-media">
